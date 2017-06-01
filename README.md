@@ -1,6 +1,5 @@
 # woocommerce-order-deliveryman-plugin
 /***** Deliveryman Management with delivery report for Woocommerce ******\
-Contributors: Mohammed Mohasin
 Tags: DeliveryMan, woocommerce, delivery Man, delivery, Delivery management Reports
 Requires at least: 4.1
 Tested up to: 4.7
