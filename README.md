@@ -11,7 +11,7 @@ This plugin manages deleveryman for woocommerce orders.
 This plugin allows to create deliveryman and assign them to orders. You can also check delivery reports By Deliveryman and Order Date.
 
 == Installation ==
-1. Install plugin by searching or uploading its zip.
+1. Install plugin.
 1. Activate plugin
 1. Go to Users->Add New, from wordpress main left menu
 1. Create a deliver man (user) and select 'Deliveryman' from Role drop down
