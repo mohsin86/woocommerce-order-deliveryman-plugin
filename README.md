@@ -13,9 +13,13 @@ This plugin allows to create deliveryman and assign them to orders. You can also
 ========= Installation ==========
 
 a. Install plugin.
+
 b. Activate plugin
+
 c. Go to Users->Add New, from wordpress main left menu
+
 d. Create a deliver man (user) and select 'Deliveryman' from Role drop down
+
 e. Edit any WooCommerce order and Select Rider from the options in right side and then save order
 
 **Note**: You must have WooCommerce activated before using this plugin. Requires at least: 4.1
