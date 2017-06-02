@@ -1,5 +1,6 @@
 # Woocommerce Order Deliveryman Plugin
 /***** Deliveryman Management with delivery report for Woocommerce ******\
+
 Tags: DeliveryMan, woocommerce, delivery Man, delivery, Delivery management Reports
 Requires at least: 4.1
 Tested up to: 4.7
@@ -8,9 +9,11 @@ Tested up to: 4.7
 This plugin manages deleveryman for woocommerce orders.
 
 ========= Description ==========
+
 This plugin allows to create deliveryman and assign them to orders. You can also check delivery reports By Deliveryman and Order Date.
 
 ========= Installation ==========
+
 a. Install plugin.
 b. Activate plugin
 c. Go to Users->Add New, from wordpress main left menu
