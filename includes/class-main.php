@@ -90,7 +90,7 @@ class DeliveryManMetaBox
             $new_order_statuses[ $key ] = $status;
 
             if ( 'wc-processing' === $key ) {
-                $new_order_statuses['wc-delivery-man'] = 'Assign to Delivery Man';
+                $new_order_statuses['wc-awaiting-shipment'] = 'Assign to Delivery Man';
             }
         }
 
@@ -145,47 +145,96 @@ class DeliveryManMetaBox
     {
 
         if( !empty( $_POST['_deliveryman_id'] ) )
-            update_post_meta( $product_id, '_deliveryman_id', $_POST['_deliveryman_id'] );
+            update_post_meta( $product_id, '_deliveryman_id', sanitize_text_field($_POST['_deliveryman_id']) );
 
         if( !empty( $_POST['_delivery_status'] ) )
-            update_post_meta( $product_id, '_delivery_status', $_POST['_delivery_status'] );
+            update_post_meta( $product_id, '_delivery_status', sanitize_text_field($_POST['_delivery_status']) );
+
+
+
+
+        if( !empty( $_POST['_deliveryman_id']) && !empty( $_POST['_delivery_status'] )){
+            $this->send_mail_to_deliveryman($_POST['_deliveryman_id'],$_POST['_delivery_status']);
+        }
+
+
 
     }
 
 
+    /*
+     *
+     * Get formated shipping address
+     */
+    public function formatted_shipping_address($order_obj)
+    {
+        $shipping_info =  $order_obj->get_address('shipping');
+        $address =
+            'Name :'. $shipping_info['first_name'] . ' ' . $shipping_info['last_name'] . ' ' . ',  ' .
+            //  'Mobile : '.$shipping_info['address_1']      . ', ' .
+            'Address 1 : '.$shipping_info['address_1']      . ', ' .
+            'Address 2 : '. $shipping_info['address_2']    . ',  ' .
+            'city : '.$shipping_info['city'] .',  ' .
+            'state  : '.$shipping_info['state'] . ',  ' .
+            'postcode  : '.$shipping_info['postcode'] ;
 
+        return $address;
+
+    }
 
 
     function custom_shop_order_column($columns)
     {
         //add columns
         $columns['order-deliveryman'] = __( 'Delivery Assign to','theme_slug');
-
         return $columns;
     }
 
     function cbsp_credit_details( $column )
     {
         global $post, $woocommerce, $the_order;
-        $order_id = $the_order->id;
 
-        switch ( $column )
-        {
-            case 'order-deliveryman' :
-                $deliveryman = get_post_meta( $order_id, '_deliveryman_id', true );
-                $name = '';
-                if($deliveryman) {
-                    $user_obj = get_user_by('id', $deliveryman);
-                    $name = $deliveryman->user_firstname.' '.$deliveryman->user_lastname;
-                }
-                $Delivery_status = get_post_meta( $order_id, '_delivery_status', true );
-                $myVarOne = $name!=''?'Name: '.$name.'<br>' :'';
-                $myVarOne .= 'Status: '.$Delivery_status;
-                echo $myVarOne;
-                break;
+     //   if ( empty( $the_order ) || $the_order->id != $post->ID )
+          //  $the_order = new WC_Order( $post->ID );
+
+       //     $order_id = isset($the_order->id)? $the_order->id : '';
+        $order_id = $post->ID;
+        if($order_id){
+            switch ( $column )
+            {
+                case 'order-deliveryman' :
+                    $deliveryman = get_post_meta( $order_id, '_deliveryman_id', true );
+                    $name = '';
+                    if($deliveryman) {
+                        $user_obj = get_user_by('id', $deliveryman);
+                        $name = $user_obj->user_firstname.' '.$user_obj->user_lastname;
+                    }
+                    $Delivery_status = get_post_meta( $order_id, '_delivery_status', true );
+                    $myVarOne = $name!=''?'Name: '.$name.'<br>' :'';
+                    $myVarOne .= 'Status: '.$Delivery_status;
+                    echo $myVarOne;
+                    break;
+            }
         }
+
     }
 
+    public function send_mail_to_deliveryman($_deliveryman_id,$delivery_status){
+        $user_obj = get_user_by('id', $_deliveryman_id)->data;
 
+
+        global $post;
+        $id = $post->ID;
+        $order_obj = wc_get_order( $id );
+        if($user_obj){
+            $subject  = 'Delivery Status is changed for a order that you have assigned. Delivery Status: '.$delivery_status;
+            $shipping_address  = $this->formatted_shipping_address($order_obj);
+            $email = $user_obj->user_email;
+            $display_name = $user_obj->display_name;
+            $message = 'Hello '.$display_name. 'Delivery Details are: '.$shipping_address;
+            wp_mail($email, $subject, $message );
+        }
+
+    }
 
 }

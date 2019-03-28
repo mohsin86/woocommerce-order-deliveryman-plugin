@@ -1,9 +1,9 @@
 <?php
 /*
 Plugin Name: Deliveryman Management with delivery report for Woocommerce
-Plugin URI:  http://webloungeonlinebd.com
+Plugin URI:  http://dragonitbd.com
 Description: This plugin manages Deliveryman for orders deliveries
-Version:     0.1.0
+Version:     1.1
 Author:      Mohsin
 Author URI:  http://dragonitbd.com/
 License:     GPL2
@@ -13,16 +13,33 @@ License URI: https://www.gnu.org/licenses/gpl-2.0.html
 defined( 'ABSPATH' ) or die( 'Hush! Stay away please!' );
 
 /**
+ * a. Load Common Function
+ * b. Load Language File
+ */
+require_once plugin_dir_path( __FILE__ ) . 'includes/common.php';
+
+/**
  *
- * add custom field in admin order Page
+ * a. Add custom field in admin order Page.
+ * b. Add DeliveryMan Role in User.
  */
 require_once plugin_dir_path( __FILE__ ) . 'includes/class-main.php';
 
 /**
  *
- * Load sms Setting Under woocommerce Menu
+ * a. Load Page Menu "Delivery Assign List" Under Woocommerce Menu.
+ * b. Filter by Deliver Man, Delivery Status, Order Date.
+ * c. Print, Export Delivery Data.
  */
 require_once plugin_dir_path( __FILE__ ) . 'includes/class-page.php';
+
+/**
+ *
+ * a. a page for delivery man
+ */
+require_once plugin_dir_path( __FILE__ ) . 'includes/delivery-man-page.php';
+
+
 
 /**
  *
