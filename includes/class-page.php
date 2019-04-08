@@ -64,7 +64,7 @@ class deliveryReports
     }
     function _deliver_list(){
         $deliveryman_id =  isset($_POST['_deliveryman_id'])? intval(trim($_POST['_deliveryman_id'])):'';
-        $delivery_status = isset($_POST['_delivery_status'])? sanitize_text_field(trim($_POST['_delivery_status'])):'';
+        $delivery_status = isset($_POST['_delivery_status'])? sanitize_text_field(trim($_POST['_delivery_status'])) : '';
         $daterange = isset($_POST['daterange'])? sanitize_text_field(trim($_POST['daterange'])):'';
 
         $args = array(

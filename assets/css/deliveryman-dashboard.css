@@ -1,0 +1,17 @@
+body{
+    background: #f1f1f1;
+}
+.postbox-container{
+    width: 100%
+}
+.postbox-data{
+    padding: 10px;
+}
+
+.success{
+    color: green;
+}
+.postbox-data td{
+    padding-right: 15px;
+    padding-bottom: 15px;
+}
