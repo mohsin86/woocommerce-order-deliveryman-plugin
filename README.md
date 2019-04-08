@@ -1,7 +1,7 @@
 # Woocommerce Order Deliveryman Plugin
 /***** Deliveryman Management with delivery report for Woocommerce ******\
 
-Tags: DeliveryMan, woocommerce, delivery Man, delivery, Delivery management Reports, Firebase cloud messaging, FCM
+Tags: DeliveryMan, Delivery rider, woocommerce, delivery Man, delivery, Delivery management Reports, Firebase cloud messaging, FCM
 
 
 This plugin manages deleveryman for woocommerce orders.
