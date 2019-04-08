@@ -1,7 +1,7 @@
 # Woocommerce Order Deliveryman Plugin
 /***** Deliveryman Management with delivery report for Woocommerce ******\
 
-Tags: DeliveryMan, woocommerce, delivery Man, delivery, Delivery management Reports
+Tags: DeliveryMan, woocommerce, delivery Man, delivery, Delivery management Reports, Firebase cloud messaging, FCM
 
 
 This plugin manages deleveryman for woocommerce orders.
@@ -21,6 +21,8 @@ c. Go to Users->Add New, from wordpress main left menu
 d. Create a deliver man (user) and select 'Deliveryman' from Role drop down
 
 e. Edit any WooCommerce order and Select Rider from the options in right side and then save order
+
+F. Firbase Push Notification implemented
 
 **Note**: You must have WooCommerce activated before using this plugin. Requires at least: 4.1
 
